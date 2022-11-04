@@ -1,0 +1,9 @@
+#main{
+  display: flex;
+  gap: 10px;
+}
+.card {
+  min-width: 100px;
+  border: 2px solid black;
+  min-height: 100px;
+}
