@@ -36,13 +36,13 @@ function listLibrary() {
         writer.setAttribute('class', 'cardAuthor');
         //fill card elements with book details
         cardHeader.textContent = library[i].title;
-        writer.textContent = library[i].author
-        pagesInBook.textContent = library[i].pages
+        writer.textContent = library[i].author;
+        pagesInBook.textContent = library[i].pages;
         //if book == read, add class
         if (library[i].read == true) {
             divcard.classList.add('read');
         }
-        //append card elements to card
+        //append card elements to card and to main
         divcard.appendChild(cardHeader)
         divcard.appendChild(writer)
         divcard.appendChild(pagesInBook)
@@ -51,7 +51,14 @@ function listLibrary() {
 }
 listLibrary()
 
-function addBook() {
+const newBookButton = document.getElementById('newBookButton').addEventListener('click', newBook)
+function newBook() {
     //create input after function, then append it to library
 
+    formBox = document.getElementById('newBookForm')
+    if (formBox.hidden == true){
+        formBox.hidden = false
+    } else {
+        formBox.hidden = true
+    }
 }
