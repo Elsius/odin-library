@@ -22,29 +22,36 @@ addBookToLibrary('book1', 'guy', 100, true)
 addBookToLibrary('book2', 'dude', 90, true)
 addBookToLibrary('book3', 'dood', 1, false)
 
+//break this function apart to improve modularity?
+//listLibrary initializes based on current library contents
 function listLibrary() {
-    //write new function to append a new card
     for (let i = 0; i < library.length; i++) {
-        console.log(library[i].info())
-        //create card elements and label
+        //create card elements and selectors
         let divcard = document.createElement("div"),
-            cardHeader = document.createElement('h2'),
-            p = document.createElement('p');
+            cardHeader = document.createElement('h3'),
+            writer = document.createElement('div'),
+            pagesInBook = document.createElement('p');
         divcard.setAttribute('id', `card${i}`);
         divcard.setAttribute('class', 'card');
+        writer.setAttribute('class', 'cardAuthor');
         //fill card elements with book details
         cardHeader.textContent = library[i].title;
-        p.textContent = library[i].author
-
+        writer.textContent = library[i].author
+        pagesInBook.textContent = library[i].pages
+        //if book == read, add class
+        if (library[i].read == true) {
+            divcard.classList.add('read');
+        }
         //append card elements to card
         divcard.appendChild(cardHeader)
-        divcard.appendChild(p)
+        divcard.appendChild(writer)
+        divcard.appendChild(pagesInBook)
         document.getElementById('main').appendChild(divcard);
     }
 }
 listLibrary()
 
-function addBook(){
+function addBook() {
     //create input after function, then append it to library
-    
+
 }
