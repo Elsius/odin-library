@@ -1,4 +1,5 @@
-let library = [];
+let library = [],
+    cards = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -31,15 +32,23 @@ function listLibrary() {
         let divcard = document.createElement("div"),
             cardHeader = document.createElement('h3'),
             writer = document.createElement('div'),
-            pagesInBook = document.createElement('p');
+            pagesInBook = document.createElement('p'),
+            buttonBox = document.createElement('div'),
+            readToggleButton = document.createElement('button'),
+            deleteBookButton = document.createElement('button');
         divcard.setAttribute('id', `card${i}`);
         divcard.setAttribute('class', 'card');
         writer.setAttribute('class', 'cardAuthor');
+        readToggleButton.setAttribute('id', `toggle${i}`)
+        deleteBookButton.setAttribute('id', `${i}`);
+
         //fill card elements with book details
         cardHeader.textContent = library[i].title;
         writer.textContent = library[i].author;
         pagesInBook.textContent = library[i].pages;
-        //if book == read, add class
+        readToggleButton.textContent = 'Read'
+        deleteBookButton.textContent = 'X';
+        //if book == read, add class. 
         if (library[i].read == true) {
             divcard.classList.add('read');
         }
@@ -47,21 +56,37 @@ function listLibrary() {
         divcard.appendChild(cardHeader)
         divcard.appendChild(writer)
         divcard.appendChild(pagesInBook)
+        divcard.appendChild(readToggleButton)
+        divcard.appendChild(deleteBookButton)
         document.getElementById('main').appendChild(divcard);
+        //add event listener to toggle read
+        document.getElementById(`${i}`).addEventListener('click', function () {deleteBook(`${i}`)})
+        document.getElementById(`toggle${i}`).addEventListener('click', function () {toggleRead(`card${i}`)})
+        
     }
 }
 listLibrary()
 
 const newBookButton = document.getElementById('newBookButton').addEventListener('click', newBookForm)
 function newBookForm() {
-    //create input after function, then append it to library
-
+    //(un)hides new book form
     formBox = document.getElementById('newBookForm')
     if (formBox.hidden == true) {
         formBox.hidden = false
     } else {
         formBox.hidden = true
     }
+}
+
+function toggleRead(cardNumber) {
+    let card = document.getElementById(cardNumber)
+    card.classList.toggle('read');
+}
+
+function deleteBook(idNumber) {
+    let card = document.getElementById(`card${idNumber}`);
+    card.removeEventListener('click', toggleRead(`card${idNumber}`))
+    card.outerHTML = '';
 }
 
 const submitNewBook = document.getElementById('submitBook');
