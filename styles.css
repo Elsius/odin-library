@@ -30,3 +30,10 @@
 .read {
   background-color: rgb(0, 226, 75);
 }
+#newBookForm section {
+  display: flex;
+}
+#newBookForm section div {
+  display: flex;
+  flex-direction: column;
+}

@@ -18,17 +18,23 @@
   </div>
 </body>
 <form action="#" id='newBookForm' hidden>
+  <section>
+    <div>
+      <label for="bookName">Title:</label>
+      <label for="authorInput">Author:</label>
+      <label for="pagesInput">Pages:</label>
+      <label for="readCheck">Read:</label>
+    </div>
+    <div>
+      <input type="text" name="title" id="bookName" required>
+      <input type="text" name="author" id="authorInput">
+      <input type="number" name="pages" id="pagesInput">
+      <input type="checkbox" name="read" id="readCheck">
+    </div>
+  </section>
   <div>
-    <label for="bookName">Title</label>
-    <input type="text" name="title" id="bookName">
+    <input type="submit" name="submitBook" id="submitBook">
   </div>
-  <div>
-    <label for="authorInput">Author</label>
-    <input type="text" name="author" id="authorInput">
-  </div>
-  <div>
-    <label for="pagesInput">Pages</label>
-    <input type="text" name="pages" id="pagesInput">
-  </div>
+
 </form>
 </html>

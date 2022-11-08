@@ -25,6 +25,7 @@ addBookToLibrary('book3', 'dood', 1, false)
 //break this function apart to improve modularity?
 //listLibrary initializes based on current library contents
 function listLibrary() {
+    document.getElementById('main').innerHTML = '';
     for (let i = 0; i < library.length; i++) {
         //create card elements and selectors
         let divcard = document.createElement("div"),
@@ -51,14 +52,27 @@ function listLibrary() {
 }
 listLibrary()
 
-const newBookButton = document.getElementById('newBookButton').addEventListener('click', newBook)
-function newBook() {
+const newBookButton = document.getElementById('newBookButton').addEventListener('click', newBookForm)
+function newBookForm() {
     //create input after function, then append it to library
 
     formBox = document.getElementById('newBookForm')
-    if (formBox.hidden == true){
+    if (formBox.hidden == true) {
         formBox.hidden = false
     } else {
         formBox.hidden = true
     }
+}
+
+const submitNewBook = document.getElementById('submitBook');
+submitNewBook.addEventListener('click', submitBook);
+function submitBook(event) {
+    event.preventDefault()
+    //grabs form info to pass into add book
+    let title = document.getElementById('bookName').value,
+    author = document.getElementById('authorInput').value,
+    pages = document.getElementById('pagesInput').value,
+    read = document.getElementById('readCheck').checked; 
+    addBookToLibrary(title,author,pages,read)
+    listLibrary()
 }
