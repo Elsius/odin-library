@@ -1,22 +1,25 @@
 let library = [],
     cards = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    if (read == true || read == 1 || read == 'yes') {
-        this.read = true;
-    } else {
-        this.read = false;
+
+class Tome{
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        if (read == true || read == 1 || read == 'yes') {
+            this.read = true;
+        } else {
+            this.read = false;
+        }
     }
-    this.info = () => {
+    info = () => {
         return `${this.title} by ${this.author}, ${this.pages} pages. Read = ${this.read}`
     }
 }
-
 function addBookToLibrary(title, author, pages, read) {
-    library.push(new Book(title, author, pages, read))
+    library.push(new Tome(title, author, pages, read))
+
 }
 //testing, automatically fills library array
 addBookToLibrary('book1', 'guy', 100, true)
@@ -87,6 +90,7 @@ function deleteBook(idNumber) {
     let card = document.getElementById(`card${idNumber}`);
     card.removeEventListener('click', toggleRead(`card${idNumber}`))
     card.outerHTML = '';
+    library.splice(idNumber,1)
 }
 
 const submitNewBook = document.getElementById('submitBook');
